@@ -1,7 +1,7 @@
 # AIGC-Killer-Pro
 
 <p align="center">
-  <strong>知网 AIGC 检测 | 论文 AI 降率 | 学术写作助手</strong>
+  <strong>论文 AIGC 检测 | AI 降率 | 学术写作助手</strong>
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
 
 ---
 
-> 基于 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 的学术论文 AIGC 检测与改写 Skill。从 5 个维度深度分析论文的 AI 生成特征，提供针对性改写建议，帮助降低知网 AIGC 检测率。
+> 基于 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 的学术论文 AIGC 检测与改写 Skill。从 5 个维度深度分析论文的 AI 生成特征，提供针对性改写建议，帮助降低 AIGC 检测率。
 
 **一句话安装，开箱即用：**
 
@@ -24,9 +24,9 @@ curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/
 
 ## 为什么做这个？
 
-2026 年知网 AIGC 检测已升级到 v2.13，采用"DeepSeek+华知"双模型架构，AI 内容识别准确率达 89%。单纯同义词替换已无法通过检测，必须在语义结构层面进行重构。
+2026 年主流 AIGC 检测平台已全面升级，AI 内容识别准确率大幅提升。单纯同义词替换已无法通过检测，必须在语义结构层面进行重构。
 
-AIGC-Killer-Pro 利用 Claude 的深层语义理解能力，精准识别论文中的 AI 生成痕迹，并基于知网检测原理提供科学的改写指导。
+AIGC-Killer-Pro 利用 Claude 的深层语义理解能力，精准识别论文中的 AI 生成痕迹，并提供科学的改写指导。
 
 ## 特性
 
@@ -128,7 +128,7 @@ rm -rf ~/.claude/skills/aigc-detector/
 
 ## 改写技法
 
-Skill 内置 5 大改写技法，基于知网 v2.13 检测原理设计：
+Skill 内置 5 大改写技法，基于 AIGC 检测原理设计：
 
 | 技法 | 核心思路 | 示例 |
 |------|---------|------|
@@ -146,13 +146,13 @@ Skill 内置 5 大改写技法，基于知网 v2.13 检测原理设计：
 ├── scripts/
 │   └── docx_io.py                # Word 文档读写脚本
 └── references/
-    ├── detection_principles.md   # 知网检测原理知识库
+    ├── detection_principles.md   # AIGC 检测原理知识库
     └── rewrite_methods.md        # 5 大改写技法详细指南
 ```
 
 ## 注意事项
 
-- 检测结果仅供参考，最终判断以知网等官方平台检测结果为准
+- 检测结果仅供参考，最终判断以各平台官方检测结果为准
 - 改写时会保持学术严谨性，不会编造虚假数据或文献
 - 建议采用"人工修改 + 工具辅助"的组合策略
 - 适用于中文和英文学术论文
