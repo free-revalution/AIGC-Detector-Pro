@@ -43,7 +43,7 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 
 ### Step 2：多维度语义分析
 
-对文本进行5个维度的AI特征分析。不要使用简单的关键词匹配或统计计算，要基于语义理解进行深度分析。
+对文本进行5个维度的AI特征分析。不要使用简单的关键词匹配或统计计算，要基于语义理解进行深度分析。参考 `~/.claude/skills/aigc-detector/references/detection_principles.md` 中的检测原理。
 
 **5个分析维度：**
 
@@ -138,14 +138,14 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 
 对每个高风险和中风险段落，提供具体的改写建议。
 
-改写前，先阅读 `~/.claude/skills/aigc-detector/references/rewrite_methods.md` 获取详细的改写技法。
+改写前，先阅读 `~/.claude/skills/aigc-detector/references/rewrite_methods.md` 获取详细的 7 大改写技法。
 
 对每个需要改写的段落：
 
 1. 标注风险原因（引用具体维度）
 2. 指出具体的AI特征词汇/句式
-3. 提供改写示例（应用合适的改写技法）
-4. 说明改写思路（为什么这样改能降低AI率）
+3. 提供改写示例（应用合适的改写技法，优先使用句式重构和破解模板）
+4. 说明改写思路（引用对应的检测原理，说明为什么这样改能降低AI率）
 
 **改写注意事项：**
 - 保持原文的学术含义，不要改变核心观点
