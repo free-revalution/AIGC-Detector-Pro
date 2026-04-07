@@ -1,8 +1,32 @@
 # AIGC-Killer-Pro
 
-> Claude Code Skill：学术论文 AIGC 检测与改写助手
+<p align="center">
+  <strong>知网 AIGC 检测 | 论文 AI 降率 | 学术写作助手</strong>
+</p>
 
-一个基于 Claude Code 的 Skill，用于分析学术论文中的 AI 生成内容特征，提供详细的改写建议和操作指导，帮助降低知网等平台的 AIGC 检测率。
+<p align="center">
+  <a href="https://github.com/free-revalution/AIGC-Killer-Pro/stargazers"><img src="https://img.shields.io/github/stars/free-revalution/AIGC-Killer-Pro?style=social" alt="Stars"></a>
+  <a href="https://github.com/free-revalution/AIGC-Killer-Pro/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+  <a href="https://github.com/free-revalution/AIGC-Killer-Pro/releases"><img src="https://img.shields.io/badge/version-1.0.0-green.svg" alt="Version"></a>
+</p>
+
+---
+
+> 基于 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 的学术论文 AIGC 检测与改写 Skill。从 5 个维度深度分析论文的 AI 生成特征，提供针对性改写建议，帮助降低知网 AIGC 检测率。
+
+**一句话安装，开箱即用：**
+
+```bash
+curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/install.sh | bash
+```
+
+> 需要提前安装 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 和 Python 3.8+
+
+## 为什么做这个？
+
+2026 年知网 AIGC 检测已升级到 v2.13，采用"DeepSeek+华知"双模型架构，AI 内容识别准确率达 89%。单纯同义词替换已无法通过检测，必须在语义结构层面进行重构。
+
+AIGC-Killer-Pro 利用 Claude 的深层语义理解能力，精准识别论文中的 AI 生成痕迹，并基于知网检测原理提供科学的改写指导。
 
 ## 特性
 
@@ -10,25 +34,29 @@
 - **纯语义驱动** — 不依赖关键词匹配，由 Claude 进行深层语义理解分析
 - **学科自适应** — 支持文科、理工科、医学、经管等学科特化阈值
 - **.docx 支持** — 直接读取 Word 文档，改写后输出新 .docx（自动保留原始副本）
-- **一键安装** — 一条命令完成安装，开箱即用
+- **一键安装** — 一条命令完成安装
 
 ## 安装
-
-> 前置要求：[Claude Code](https://docs.anthropic.com/en/docs/claude-code)、Python 3.8+
 
 ```bash
 curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/install.sh | bash
 ```
 
-安装脚本会自动完成以下操作：
+安装脚本会自动完成：
 1. 下载 Skill 文件到 `~/.claude/skills/aigc-detector/`
 2. 检查并安装 `python-docx` 依赖
+
+卸载：
+
+```bash
+rm -rf ~/.claude/skills/aigc-detector/
+```
 
 ## 使用方式
 
 安装完成后，在 Claude Code 中直接对话即可触发 Skill：
 
-### 检测论文
+### 检测论文 AIGC 特征
 
 ```
 分析这篇论文的AIGC特征：/path/to/thesis.docx
@@ -39,7 +67,7 @@ curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/
 （然后粘贴论文文本）
 ```
 
-### 改写论文
+### 改写论文降低 AI 率
 
 ```
 帮我改写这篇论文降低AI率：/path/to/thesis.docx
@@ -122,12 +150,6 @@ Skill 内置 5 大改写技法，基于知网 v2.13 检测原理设计：
     └── rewrite_methods.md        # 5 大改写技法详细指南
 ```
 
-## 卸载
-
-```bash
-rm -rf ~/.claude/skills/aigc-detector/
-```
-
 ## 注意事项
 
 - 检测结果仅供参考，最终判断以知网等官方平台检测结果为准
@@ -135,6 +157,16 @@ rm -rf ~/.claude/skills/aigc-detector/
 - 建议采用"人工修改 + 工具辅助"的组合策略
 - 适用于中文和英文学术论文
 
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
 ## License
 
-MIT
+[MIT](LICENSE)
+
+---
+
+<p align="center">
+  如果觉得有用，请给一个 <a href="https://github.com/free-revalution/AIGC-Killer-Pro">Star</a> 支持一下
+</p>
