@@ -75,13 +75,12 @@ python3 ~/.aigc-killer/aigc-detector/scripts/docx_io.py read "<文件路径>"
 python3 .claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 ```
 
-将输出的文本用于后续分析。
+将输出的文本用于后续分析。输出格式为 `[段落编号] 段落内容`，段落间以空行分隔。
 
 **如果用户直接粘贴了文本：**
 直接使用粘贴的文本进行分析。
 
 **处理要求：**
-- 按段落分割文本，为每个段落编号
 - 如果文本过长（超过5000字），按章节或自然段落分段处理，每段200-500字
 
 ### Step 2：多维度语义分析
@@ -308,13 +307,21 @@ python3 .claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 
 3. **输出改写后文档**
 
-   使用 python-docx 库编写脚本来替换 .docx 中的段落（而不是用 docx_io.py 重写整个文档），以保留原始文档的格式、图片和排版：
-   - 读取原始 .docx 文件
-   - 定位高风险段落，替换为改写后的文本
-   - 保留原始字体、字号、段落样式
-   - 保存为 `_rewritten.docx` 文件
+   使用 docx_io.py 的 replace 子命令逐个替换高风险段落，保留原始文档的格式、图片和排版：
 
-   默认输出路径：与原始文件同目录，文件名添加 `_rewritten` 后缀。
+   ```bash
+   echo "<改写后的段落文本>" | python3 ~/.aigc-killer/aigc-detector/scripts/docx_io.py replace "<原始文件路径>" <段落编号>
+   ```
+
+   如果全局路径不存在，回退到项目级路径：
+   ```bash
+   echo "<改写后的段落文本>" | python3 .claude/skills/aigc-detector/scripts/docx_io.py replace "<原始文件路径>" <段落编号>
+   ```
+
+   - 先保存原始副本：`cp "<原始文件路径>" "<文件名去扩展名>_backup.docx"`
+   - 逐个替换高风险和中风险段落（按段落编号）
+   - 保留低风险段落不变
+   - 默认输出为 `{文件名}_rewritten.docx`
 
 4. **输出改写对比摘要**
 
