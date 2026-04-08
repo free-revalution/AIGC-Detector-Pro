@@ -53,12 +53,10 @@ remove_markers "$HOME/.codex/AGENTS.md"
 remove_markers "$DIR/.cursor/rules/aigc-detector.mdc"
 remove_markers "$DIR/.windsurfrules"
 remove_markers "$DIR/GEMINI.md"
-remove_markers "$DIR/.github/copilot-instructions.md"
 
 # Remove empty parent directories
 rmdir "$HOME/.codex" 2>/dev/null && echo "    Removed $HOME/.codex/" || true
 rmdir "$DIR/.cursor/rules" 2>/dev/null && echo "    Removed $DIR/.cursor/rules/" || true
 rmdir "$DIR/.cursor" 2>/dev/null && echo "    Removed $DIR/.cursor/" || true
-rmdir "$DIR/.github" 2>/dev/null && echo "    Removed $DIR/.github/" || true
 
 echo "==> Uninstall complete!"

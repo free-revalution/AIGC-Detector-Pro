@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # AIGC-Detector Skill Installer
-# Supports: Claude Code, Codex, Cursor, Windsurf, Gemini CLI, GitHub Copilot
+# Supports: Claude Code (full), Codex / Cursor / Windsurf / Gemini CLI (partial)
 # Usage: curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/install.sh | bash -s -- [OPTIONS]
 
 set -e
@@ -125,14 +125,6 @@ $SKILL_CONTENT"
     append_entry "$DIR/GEMINI.md" "$content"
 }
 
-install_copilot() {
-    echo "==> Setting up GitHub Copilot..."
-    local content="# AIGC-Detector Skill
-
-$SKILL_CONTENT"
-    append_entry "$DIR/.github/copilot-instructions.md" "$content"
-}
-
 # Dispatch
 case "$AGENT" in
     claude)
@@ -142,18 +134,16 @@ case "$AGENT" in
     cursor)  install_cursor ;;
     windsurf) install_windsurf ;;
     gemini)  install_gemini ;;
-    copilot) install_copilot ;;
     all)
         echo "==> Claude Code: Skill installed to $INSTALL_DIR (auto-detected)"
         install_codex
         install_cursor
         install_windsurf
         install_gemini
-        install_copilot
         ;;
     *)
         echo "Error: Unknown agent '$AGENT'"
-        echo "Supported agents: claude, codex, cursor, windsurf, gemini, copilot, all"
+        echo "Supported agents: claude, codex, cursor, windsurf, gemini, all"
         exit 1
         ;;
 esac

@@ -8,9 +8,11 @@
   <a href="https://github.com/free-revalution/AIGC-Killer-Pro/stargazers"><img src="https://img.shields.io/github/stars/free-revalution/AIGC-Killer-Pro?style=social" alt="Stars"></a>
   <a href="https://github.com/free-revalution/AIGC-Killer-Pro/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <a href="https://github.com/free-revalution/AIGC-Killer-Pro/releases"><img src="https://img.shields.io/github/stars/free-revalution/AIGC-Killer-Pro?style=social" alt="Stars"></a>
-  <a href="README.md">简体中文</a> | English
 </p>
 
+<p align="center">
+  <a href="README.md">简体中文</a> | English
+</p>
 ---
 
 > A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) Skill for academic paper AI content (AIGC) detection and rewriting. Analyzes papers across 5 dimensions for AI-generated characteristics, provides targeted rewrite guidance, and helps reduce AIGC detection rates.
@@ -53,17 +55,20 @@ The installer automatically:
 
 AIGC-Detector is compatible with multiple AI agents:
 
-| Agent | Install Command |
-|-------|----------------|
-| Claude Code | `curl -sL ... \| bash` (default) |
-| Codex CLI | `curl -sL ... \| bash -s -- --agent codex` |
-| Cursor | `curl -sL ... \| bash -s -- --agent cursor --dir /your/project` |
-| Windsurf | `curl -sL ... \| bash -s -- --agent windsurf --dir /your/project` |
-| Gemini CLI | `curl -sL ... \| bash -s -- --agent gemini --dir /your/project` |
-| GitHub Copilot | `curl -sL ... \| bash -s -- --agent copilot --dir /your/project` |
-| All Agents | `curl -sL ... \| bash -s -- --agent all` |
+| Agent | Compatibility | Install Command |
+|-------|:------------:|----------------|
+| Claude Code | Full | `curl -sL ... \| bash` (default) |
+| Codex CLI | Partial | `curl -sL ... \| bash -s -- --agent codex` |
+| Cursor | Partial | `curl -sL ... \| bash -s -- --agent cursor --dir /your/project` |
+| Windsurf | Partial | `curl -sL ... \| bash -s -- --agent windsurf --dir /your/project` |
+| Gemini CLI | Partial | `curl -sL ... \| bash -s -- --agent gemini --dir /your/project` |
+| All Agents | — | `curl -sL ... \| bash -s -- --agent all` |
 
-> Core content is installed at `~/.aigc-killer/aigc-detector/` (agent-agnostic path). Each agent uses entry pointer files for reference. Re-run the install command to upgrade.
+> **Compatibility notes:**
+> - **Full support**: Intent-based skill triggering, complete multi-step workflow execution, interactive user choice
+> - **Partial support**: Instructions injected as context; agents can execute bash/Python/file operations, but step adherence is best-effort (not guaranteed in strict order), no precise trigger mechanism
+>
+> GitHub Copilot is not supported (cannot execute shell commands or file I/O required by this workflow)
 
 Uninstall:
 
@@ -178,8 +183,7 @@ AIGC-Killer-Pro/
 │   ├── codex.md                        # Codex CLI template
 │   ├── cursor.mdc                      # Cursor template
 │   ├── windsurf.md                     # Windsurf template
-│   ├── gemini.md                       # Gemini CLI template
-│   └── copilot.md                      # GitHub Copilot template
+│   └── gemini.md                       # Gemini CLI template
 ├── install.sh                          # One-line installer (multi-agent support)
 ├── uninstall.sh                        # Uninstaller
 ├── README.md                           # Chinese documentation

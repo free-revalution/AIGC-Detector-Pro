@@ -4,10 +4,13 @@
   <strong>论文 AIGC 检测 | AI 降率 | 学术写作助手</strong>
 </p>
 
-<p align="center">
+
   <a href="https://github.com/free-revalution/AIGC-Killer-Pro/stargazers"><img src="https://img.shields.io/github/stars/free-revalution/AIGC-Killer-Pro?style=social" alt="Stars"></a>
   <a href="https://github.com/free-revalution/AIGC-Killer-Pro/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <a href="https://github.com/free-revalution/AIGC-Killer-Pro/releases"><img src="https://img.shields.io/github/stars/free-revalution/AIGC-Killer-Pro?style=social" alt="Stars"></a>
+</p>
+
+<p align="center">
   <a href="README.en.md">English</a> | 简体中文
 </p>
 
@@ -57,17 +60,20 @@ rm -rf ~/.claude/skills/aigc-detector/
 
 AIGC-Detector 适配多种 AI Agent，一条命令即可安装：
 
-| Agent | 安装命令 |
-|-------|---------|
-| Claude Code | `curl -sL ... \| bash`（默认） |
-| Codex CLI | `curl -sL ... \| bash -s -- --agent codex` |
-| Cursor | `curl -sL ... \| bash -s -- --agent cursor --dir /your/project` |
-| Windsurf | `curl -sL ... \| bash -s -- --agent windsurf --dir /your/project` |
-| Gemini CLI | `curl -sL ... \| bash -s -- --agent gemini --dir /your/project` |
-| GitHub Copilot | `curl -sL ... \| bash -s -- --agent copilot --dir /your/project` |
-| 全部安装 | `curl -sL ... \| bash -s -- --agent all` |
+| Agent | 兼容性 | 安装命令 |
+|-------|:------:|---------|
+| Claude Code | 完全支持 | `curl -sL ... \| bash`（默认） |
+| Codex CLI | 部分支持 | `curl -sL ... \| bash -s -- --agent codex` |
+| Cursor | 部分支持 | `curl -sL ... \| bash -s -- --agent cursor --dir /your/project` |
+| Windsurf | 部分支持 | `curl -sL ... \| bash -s -- --agent windsurf --dir /your/project` |
+| Gemini CLI | 部分支持 | `curl -sL ... \| bash -s -- --agent gemini --dir /your/project` |
+| 全部安装 | — | `curl -sL ... \| bash -s -- --agent all` |
 
-> 核心内容统一安装在 `~/.aigc-killer/aigc-detector/`（Agent 无关的通用路径），各 Agent 通过入口指针文件引用。升级时重新运行安装命令即可。
+> **兼容性说明：**
+> - **完全支持**：Skill 系统精确触发，完整执行多步工作流，交互式用户选择
+> - **部分支持**：指令作为上下文注入，Agent 可执行 bash/Python/文件操作，但步骤执行为最佳努力（不保证严格按顺序），无精确触发机制
+>
+> GitHub Copilot 不支持（无法执行 shell 命令和文件操作，工作流不兼容）
 
 卸载：
 
@@ -178,8 +184,7 @@ AIGC-Killer-Pro/
 │   ├── codex.md                        # Codex CLI 模板
 │   ├── cursor.mdc                      # Cursor 模板
 │   ├── windsurf.md                     # Windsurf 模板
-│   ├── gemini.md                       # Gemini CLI 模板
-│   └── copilot.md                      # GitHub Copilot 模板
+│   └── gemini.md                       # Gemini CLI 模板
 ├── install.sh                          # 一键安装脚本（支持多 Agent）
 ├── uninstall.sh                        # 卸载脚本
 ├── README.md

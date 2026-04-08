@@ -26,12 +26,12 @@ Bilingual academic paper AI content (AIGC) detection and rewriting assistant. An
 
 本 Skill 适配多种 AI Agent。以下是各 Agent 的工具映射：
 
-| 功能 | Claude Code | 其他 Agent (Codex / Cursor / Windsurf / Gemini / Copilot) |
-|------|------------|----------------------------------------------------------|
+| 功能 | Claude Code | 其他 Agent (Codex / Cursor / Windsurf / Gemini) |
+|------|------------|--------------------------------------------------|
 | 询问用户 | AskUserQuestion 工具 | 输出选项编号，等待用户输入数字选择 |
 | 保存文件 | Write 工具 | 使用 Bash 写入文件 |
 | 读取文档 | Bash + python3 | 相同 |
-| 路径解析 | .claude/skills/ → ~/.claude/skills/（fallback） | ~/.claude/skills/（全局安装路径） |
+| 路径解析 | .claude/skills/ → ~/.aigc-killer/（fallback） | ~/.aigc-killer/（全局安装路径） |
 
 ---
 
