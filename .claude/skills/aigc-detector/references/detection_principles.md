@@ -135,3 +135,82 @@ AIGC 检测的核心原理是利用 AI 生成文本与人类写作的统计分�
 - Wan, Z., et al. (2023). "Ghostbuster: Detecting Ghost Text in Student Essays." *UC Berkeley*.
 - Krishna, K., et al. (2023). "Can AI-Generated Text be Reliably Detected?" *ICLR 2024*.
 - OpenAI. (2023). "RoBERTa-base-OpenAI-Detector." *Hugging Face*.
+
+---
+
+## 七、English AI Characteristics (英文AI特征)
+
+When analyzing English academic papers, the following 7 English-specific AI characteristics should be evaluated alongside the standard 5 dimensions.
+
+### Feature 1: Excessive Hedging Language (过度模糊语言)
+
+AI overuses tentative language to appear balanced: "it is worth noting that", "it should be emphasized", "to some extent", "arguably", "may suggest", "it could be argued that". Human academic writing is more direct in stating findings.
+
+**Detection indicators:**
+- Hedging word density > 6% of total words
+- Multiple hedging phrases per paragraph
+- Tentative language used even for well-established findings
+
+### Feature 2: Passive Voice Overuse (被动语态过度使用)
+
+AI defaults to passive constructions: "was analyzed", "has been shown to", "it was found that", "were collected", "is considered". Human writers use active voice more frequently: "we analyzed", "our results show", "we found that".
+
+**Detection indicators:**
+- Passive voice ratio > 45% of sentences
+- Consecutive passive sentences (>3 in a row)
+- "It was found that..." / "It should be noted that..." sentence openers
+
+### Feature 3: Uniform Formal Register (形式化语体一致性)
+
+AI maintains identical academic register throughout the entire text. Human writing varies naturally — some paragraphs are more formal (results), others more direct (methods), and transitions often use slightly different registers.
+
+**Detection indicators:**
+- Consistent sentence complexity across all sections
+- No variation in formality level between sections
+- All paragraphs follow the same rhetorical pattern
+
+### Feature 4: Template Transitions (模板化过渡)
+
+AI uses formulaic transitions: "Firstly...Secondly...In conclusion...", "It is important to note that...", "Building on previous work...", "As previously mentioned...", "In addition to the above...". Human transitions are more varied and contextual.
+
+**Detection indicators:**
+- Template transition count > 4 per section
+- Identical transition phrases repeated across sections
+- Sequential enumeration patterns (Firstly/Secondly/Thirdly)
+
+### Feature 5: Vocabulary Repetition (词汇重复)
+
+AI overuses a limited set of "academic-sounding" words: "significantly", "effectively", "demonstrate", "leverage", "utilize", "facilitate", "comprehensive", "novel", "robust", "paramount". Human writers use more diverse vocabulary with discipline-specific alternatives.
+
+**Detection indicators:**
+- Lexical diversity (Type-Token Ratio) < 0.60
+- Same "academic buzzword" appearing > 3 times per 1000 words
+- Preference for polysyllabic alternatives over simpler accurate words (e.g., "utilize" instead of "use")
+
+### Feature 6: Missing Methodological Caveats (缺少方法论限定)
+
+AI omits or minimizes limitations discussion. Human papers typically include honest assessments: "limitations of this approach include...", "within the scope of this study...", "this finding should be interpreted with caution because...", "a constraint of our dataset is...".
+
+**Detection indicators:**
+- Zero methodological caveat statements in a major section
+- No discussion of sample size limitations, confounding variables, or scope boundaries
+- Overconfident claims without hedging or qualification
+
+### Feature 7: Citation Pattern Uniformity (引用模式单一)
+
+AI uses formulaic citation openings: "According to [Author] (Year)..." without engaging with the cited content. Human writing integrates citations into the argument, sometimes agreeing, sometimes critiquing, sometimes extending the cited work.
+
+**Detection indicators:**
+- All citations follow the same pattern: "Author (Year) found that..."
+- No critical engagement with cited sources
+- Citations used as decorative references rather than argumentative tools
+
+### English-Specific Thresholds (英文特有阈值)
+
+| Metric | Normal Range (Human) | AI-Suspicious Range |
+|--------|---------------------|-------------------|
+| Passive voice ratio | < 30% | > 45% |
+| Hedging word density | < 3% | > 6% |
+| Template transition count | < 2 per section | > 4 per section |
+| Lexical diversity (TTR) | > 0.72 | < 0.60 |
+| Methodological caveat count | >= 1 per major section | 0 (missing) |

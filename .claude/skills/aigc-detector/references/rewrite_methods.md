@@ -198,3 +198,135 @@ AI 生成文本的最大破绽是全文风格高度一致。人类写作在不�
 2. **高优先级**：论证链条补全 + 概念具象化（提升语义深度）
 3. **中优先级**：困惑度提升 + 风格断裂（增加人类化特征）
 4. **低优先级**：添加主语（辅助优化）
+
+---
+
+## English Rewrite Techniques (英文改写技法)
+
+When rewriting English academic papers, use these 7 techniques. Each maps to a Chinese technique but is adapted for English language patterns.
+
+### Technique 1: Sentence Variation (句式变化)
+
+**Principle:** AI generates sentences of similar length and structure. Human writing naturally varies — some sentences are short (5-10 words), others are complex (30-40+ words).
+
+**How to apply:**
+- Deliberately mix sentence lengths: follow a short sentence with a long compound sentence
+- Use sentence fragments occasionally for emphasis
+- Vary sentence openings (subject-verb, prepositional phrase, dependent clause, participial phrase)
+- Insert occasional rhetorical questions in appropriate contexts
+
+**Example:**
+
+> **AI-style (High Risk):**
+> Machine learning has been widely applied in healthcare. It has improved diagnostic accuracy. It has reduced treatment costs. It has enhanced patient outcomes.
+>
+> **Human-style (Low Risk):**
+> Healthcare has changed. Over the past decade, machine learning algorithms — particularly deep neural networks trained on millions of radiological images — have quietly transformed how clinicians approach diagnosis, sometimes catching patterns that escape even experienced specialists. Treatment costs have dropped as a result, though the picture is far from uniform across hospital systems.
+
+### Technique 2: Replace Formulaic Transitions (替换模板过渡)
+
+**Principle:** AI uses predictable transition patterns ("Firstly...Secondly...In conclusion..."). Human transitions are more organic and contextual.
+
+**How to apply:**
+- Replace "Firstly/Secondly/Thirdly" with contextual transitions: "We began by...", "The next step involved...", "An unexpected finding was..."
+- Remove "It is important to note that..." — just state the point directly
+- Replace "In conclusion" with a substantive closing statement
+- Use varied connectors: "Critically", "A second observation", "Perhaps more telling", "What emerges from this is..."
+
+**High-risk phrases to eliminate:**
+- "It is worth noting that..."
+- "It should be emphasized that..."
+- "Building on previous work..."
+- "As previously mentioned..."
+- "In addition to the above..."
+
+### Technique 3: Active Voice Priority (主动语态优先)
+
+**Principle:** AI defaults to passive voice. Human academic writing increasingly uses active voice, especially in STEM fields. Named agents make text feel more authentic.
+
+**How to apply:**
+- Convert "was analyzed" to "we analyzed" or name the specific method: "PCA revealed..."
+- Replace "It was found that..." with "Our results show..." or "The data revealed..."
+- Name the agent: "The survey responses indicated..." instead of "It was indicated by the survey..."
+- Keep passive only where it genuinely serves clarity (methods section)
+
+**Example:**
+
+> **AI-style (High Risk):**
+> A survey was conducted among 500 participants. Data was collected over a three-month period. Significant correlations were found between variables X and Y.
+>
+> **Human-style (Low Risk):**
+> We surveyed 500 participants over three months. The data told an interesting story: variable X and Y correlated strongly (r = 0.73, p < 0.001), but only within the subgroup that reported daily usage.
+
+### Technique 4: Concrete Language (具体化语言)
+
+**Principle:** AI tends toward abstract, generalized statements. Human academics ground claims in specific evidence — numbers, named cases, precise conditions.
+
+**How to apply:**
+- Replace "widely adopted" with specific adoption rates or named institutions
+- Replace "significant improvement" with actual metrics (e.g., "a 34% reduction in error rate")
+- Name specific tools, datasets, or methodologies instead of generic references
+- Add conditional framing: "under conditions X, we observed Y"
+
+**Example:**
+
+> **AI-style (High Risk):**
+> Machine learning has demonstrated significant effectiveness in medical image analysis.
+>
+> **Human-style (Low Risk):**
+> At Stanford's dermatology department, a CNN trained on 130,000 clinical images achieved 97.1% sensitivity for detecting melanoma — marginally outperforming the average board-certified dermatologist in the controlled trial (Esteva et al., 2017).
+
+### Technique 5: Counterargument Addition (添加反面论证)
+
+**Principle:** AI presents a one-sided, linear argument. Human papers engage with alternative interpretations, limitations, and counterarguments.
+
+**How to apply:**
+- Add "However, an alternative interpretation..." after presenting findings
+- Include limitation statements: "A caveat is that...", "This finding should be tempered by..."
+- Reference conflicting results: "While Smith (2023) reported X, our data suggests Y, possibly because..."
+- Discuss scope: "Within the constraints of this dataset, we can only conclude..."
+
+**Example:**
+
+> **AI-style (High Risk):**
+> The results clearly demonstrate that the proposed method outperforms existing approaches in all tested scenarios.
+>
+> **Human-style (Low Risk):**
+> Across four of the five benchmark datasets, our method outperformed the baseline by 12-18%. The exception — Dataset E — is instructive: our model actually underperformed by 3.2%, likely because E contains significantly more noise in the labels (inter-rater agreement of only 0.61). This suggests that the method's advantage diminishes when training signal quality is low, a limitation we did not anticipate.
+
+### Technique 6: Controlled Informality (适度非正式表达)
+
+**Principle:** AI maintains a rigidly formal tone throughout. Human writing occasionally breaks formality — a well-placed informal phrase signals human authorship without sacrificing professionalism.
+
+**How to apply:**
+- Occasionally use words like "straightforwardly", "unsurprisingly", "notably", "admittedly" in formal text
+- Use phrases like "The short answer is..." or "Put simply," before a complex explanation
+- Include first-person observations: "We found this surprising because..."
+- Use "interestingly" or "perhaps counterintuitively" before unexpected findings
+
+**Example:**
+
+> **AI-style (High Risk):**
+> It has been established that the correlation between the variables is statistically significant (p < 0.05).
+>
+> **Human-style (Low Risk):**
+> The correlation is significant (p < 0.05) — unsurprisingly, given what we know about X — but the effect size is smaller than the literature would suggest.
+
+### Technique 7: Register Variation (语体变化)
+
+**Principle:** AI generates text with uniform style throughout. Human writing naturally shifts register — more formal in results, more narrative in methodology, more direct in discussion.
+
+**How to apply:**
+- Results section: formal, precise, data-driven
+- Methods section: more narrative, procedural, sometimes conversational ("We chose to... because...")
+- Discussion section: more argumentative, willing to speculate ("One possibility is that...")
+- Introduction: varies between broad context and specific research questions
+
+### English Rewrite Priority (英文改写优先级)
+
+When time is limited for English papers:
+
+1. **Highest priority:** Sentence Variation + Replace Formulaic Transitions (most detectable patterns)
+2. **High priority:** Counterargument Addition + Concrete Language (improves argumentation depth)
+3. **Medium priority:** Active Voice Priority + Register Variation (adds human voice)
+4. **Low priority:** Controlled Informality (fine-tuning)

@@ -1,28 +1,51 @@
 ---
 name: aigc-detector
-description: 论文AIGC检测与改写助手。检测学术论文中的AI生成内容特征，提供详细改写建议，帮助降低AIGC检测率。支持.docx文档分析，输出检测报告和改写后文档。
+description: Academic paper AI content detection and rewriting assistant. Analyzes text for AI-generated characteristics, provides detailed rewrite suggestions. Supports .docx files, outputs reports and rewritten documents. Bilingual: Chinese & English.
 ---
 
-# AIGC检测与论文改写助手
+# AIGC Detection & Rewriting Assistant
 
-学术论文AIGC（AI生成内容）检测分析与改写助手。基于AIGC检测原理，从多维度分析文本的AI生成特征，提供具体的改写指导。
+Bilingual academic paper AI content (AIGC) detection and rewriting assistant. Analyzes text across 5 dimensions for AI-generated characteristics, provides targeted rewrite guidance. Supports Chinese and English academic papers.
 
 ---
 
 ## 使用方式
 
-**分析论文：**
+**分析论文 / Analyze paper:**
 - "分析这篇论文的AIGC特征：/path/to/thesis.docx"
+- "Analyze this paper for AI-generated content: /path/to/thesis.docx"
 - "检测这篇论文的AI率"（然后粘贴文本）
 
-**改写论文：**
+**改写论文 / Rewrite paper:**
 - "帮我改写这篇论文降低AI率：/path/to/thesis.docx"
+- "Help me rewrite this paper to reduce AI detection rate: /path/to/thesis.docx"
 
 ---
 
 ## 工作流程
 
 严格按照以下步骤执行，不要跳过任何步骤。
+
+### Step 0：语言检测
+
+在读取文档之前，先检测论文语言：
+
+1. 分析输入文本的前500个字符
+2. 如果非标点字符中中文字符占比 > 60% → 语言 = "zh"
+3. 否则 → 语言 = "en"
+4. 后续所有步骤（分析、报告、改写）均使用检测到的语言
+
+**中英文对应维度映射：**
+
+| 中文维度 | English Dimension |
+|---------|------------------|
+| 句式规整度 | Sentence Regularity |
+| 逻辑词密度 | Connector Density |
+| 语态特征 | Voice Characteristics |
+| 词汇多样性 | Vocabulary Diversity |
+| 论证深度 | Argumentation Depth |
+
+**重要：** 如果语言为 "en"，在 Step 2 分析时参考 `references/detection_principles.md` 中的 "English AI Characteristics" 章节，在 Step 5 改写时参考 `references/rewrite_methods.md` 中的 "English Rewrite Techniques" 章节。
 
 ### Step 1：读取文档
 
@@ -55,22 +78,26 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 **5个分析维度：**
 
 1. **句式规整度** — 检测是否存在以下特征：
-   - 模板化句式（"首先...其次...最后..."、"一是...二是...三是..."）
+   - 中文：模板化句式（"首先...其次...最后..."、"一是...二是...三是..."）
+   - 英文：Template transitions ("Firstly...Secondly...In conclusion...", "It is important to note that...", "Building on previous work...")
    - 句长过于均匀（缺乏长短句交错）
    - 段落结构雷同
 
 2. **逻辑词密度** — 检测是否存在：
-   - 连接词使用频率异常（"综上所述""由此可见""具体而言""也就是说"）
+   - 中文：连接词使用频率异常（"综上所述""由此可见""具体而言""也就是说"）
+   - 英文：Hedging language overuse ("it is worth noting that", "it should be emphasized", "to some extent", "arguably", "may suggest")
    - 机械化的过渡句
    - 逻辑词在相似位置反复出现
 
 3. **语态特征** — 检测是否存在：
-   - 被动语态泛滥（"被分析""被发现""被证明"）
+   - 中文：被动语态泛滥（"被分析""被发现""被证明"）
+   - 英文：Passive voice overuse ("was analyzed", "has been shown to", "it was found that") and uniform formal register throughout
    - 无主句过多（句子缺乏明确的行为主体）
    - 泛指表达过多（"具有重要意义""提供了参考"而未说明"谁""对什么"）
 
 4. **词汇多样性** — 检测是否存在：
-   - 特定词汇重复率高（"显著""有效""重要""促进"等）
+   - 中文：特定词汇重复率高（"显著""有效""重要""促进"等）
+   - 英文：AI overuses "significantly", "effectively", "demonstrate", "leverage", "utilize", "facilitate", "comprehensive"
    - 概念表述过于抽象，缺乏具体化
    - 缺乏学科术语的自然使用
 
@@ -79,6 +106,7 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
    - 缺少具体数据、案例、实验细节支撑
    - 缺少对比研究、方法论反思、局限性讨论
    - 缺少个人研究观点和独立见解
+   - 英文特有：Missing methodological caveats（不讨论局限性）和 citation pattern uniformity（公式化引用 "According to [Author] (Year)..." 而不深入讨论引文内容）
 
 **评分规则：**
 - 每个维度单独评分（0-100分，100分代表最像AI）
@@ -97,7 +125,9 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 
 ### Step 3：输出检测报告
 
-在终端输出Markdown格式的检测报告。使用以下严格格式：
+在终端输出Markdown格式的检测报告。根据 Step 0 检测到的语言选择对应模板。
+
+**中文报告模板（language = "zh"）：**
 
 ```markdown
 # AIGC检测报告
@@ -156,8 +186,67 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 2. 建议2
 ```
 
+**英文报告模板（language = "en"）：**
+
+```markdown
+# AIGC Detection Report
+
+## Overview
+- Total paragraphs: X
+- Discipline: [Discipline Name]
+- Analysis date: [Date]
+
+## Overall Assessment
+- **AIGC Risk Score: XX%** [High Risk / Medium Risk / Low Risk]
+
+## Dimension Scores
+
+| Dimension | Score | Status |
+|:----------|:-----:|:------:|
+| Sentence Regularity | XX | High/Medium/Low Risk |
+| Connector Density | XX | High/Medium/Low Risk |
+| Voice Characteristics | XX | High/Medium/Low Risk |
+| Vocabulary Diversity | XX | High/Medium/Low Risk |
+| Argumentation Depth | XX | High/Medium/Low Risk |
+
+---
+
+## Paragraph-Level Analysis
+
+### Paragraph 1: [High Risk XX]
+
+**Original text:**
+> "...first 50 words..."
+
+**Key issues:**
+- Issue 1 description
+- Issue 2 description
+
+**Risk rationale:** Explanation of why this was flagged as AI-generated
+
+---
+
+### Paragraph 2: [Medium Risk XX]
+
+(Same format as above, each paragraph in its own subsection)
+
+---
+
+## Rewrite Priority
+
+| Priority | Paragraph | Reason |
+|:--------:|:----------|:-------|
+| 1 | Paragraph name | Brief reason |
+| 2 | Paragraph name | Brief reason |
+| ... | ... | ... |
+
+## Overall Recommendations
+1. Recommendation 1
+2. Recommendation 2
+```
+
 **注意事项：**
-- 使用 `> 「...」` 格式引用原文（只引用前50字，避免全文复制）
+- 中文报告使用 `> 「...」` 引用原文（只引用前50字），英文报告使用 `> "..."` 引用原文
 - 使用表格展示维度评分和改写优先级，使报告更易读
 - 用分隔线 `---` 区分报告的不同区块
 - 高风险用红色 emoji 标记（🔴），中风险用黄色（🟡），低风险用绿色（🟢）
@@ -165,12 +254,17 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 
 ### Step 4：询问用户下一步操作
 
-报告输出后，使用 AskUserQuestion 工具一次性询问用户后续操作：
+报告输出后，使用 AskUserQuestion 工具一次性询问用户后续操作。根据语言使用对应选项文案：
 
-提供以下选项：
+**中文选项：**
 1. "保存报告为 Markdown 文件" — 将检测报告保存为 .md 文件
 2. "对高风险段落进行改写并输出 .docx" — 执行 Step 5 的完整改写流程
 3. "仅查看改写建议（不修改文档）" — 输出改写建议供手动修改参考
+
+**English options:**
+1. "Save report as Markdown file"
+2. "Rewrite high-risk paragraphs and output .docx"
+3. "View rewrite suggestions only (no document changes)"
 
 根据用户选择执行对应操作：
 - 选择 1：使用 Write 工具保存，默认路径为输入文件同目录下的 `aigc_report.md`
@@ -191,7 +285,8 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 2. **执行改写**
    - 逐段改写高风险和中风险段落
    - 保持低风险段落不变
-   - 改写时严格遵循 7 大改写技法（句式重构 > 破解模板 > 论证补全 > 概念具象 > 困惑度提升 > 风格断裂 > 添加主语）
+   - 中文改写严格遵循 7 大改写技法（句式重构 > 破解模板 > 论证补全 > 概念具象 > 困惑度提升 > 风格断裂 > 添加主语）
+   - 英文改写严格遵循 7 大 English Rewrite Techniques（Sentence Variation > Replace Formulaic Transitions > Counterargument Addition > Concrete Language > Controlled Informality > Register Variation > Active Voice Priority）
    - 每个改写后的段落都应能独立通过AIGC检测
 
 3. **输出改写后文档**
@@ -206,7 +301,9 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 
 4. **输出改写对比摘要**
 
-使用以下表格格式输出：
+根据语言使用对应模板：
+
+**中文模板：**
 
 ```markdown
 ## 改写结果
@@ -228,6 +325,30 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 **主要应用的改写技法：** 技法1、技法2、...
 
 **预估改写后AIGC风险：** 从XX%降至约XX-XX%
+```
+
+**English template:**
+
+```markdown
+## Rewrite Results
+
+**Output files:**
+- Rewritten paper: [file path]
+
+**Statistics:**
+- Paragraphs rewritten: X
+- Paragraphs preserved: Y
+
+**High-risk paragraphs addressed:**
+
+| Paragraph | Key Changes |
+|:----------|:------------|
+| Paragraph name | Brief description |
+| ... | ... |
+
+**Primary techniques applied:** Technique 1, Technique 2, ...
+
+**Estimated post-rewrite AIGC risk:** From XX% to approximately XX-XX%
 ```
 
 ---
