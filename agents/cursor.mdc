@@ -1,0 +1,27 @@
+---
+description: AIGC detection and rewriting assistant for academic papers. Analyzes text for AI-generated characteristics, provides detailed rewrite suggestions. Supports .docx files, outputs reports and rewritten documents. Bilingual: Chinese & English.
+globs: *.md, *.docx, *.txt
+alwaysApply: false
+---
+
+# Cursor Entry Template
+
+## Location
+`{project}/.cursor/rules/aigc-detector.mdc`
+
+## Format
+MDC with YAML frontmatter (Cursor-specific format)
+
+## Content
+The YAML frontmatter above is the actual content used by Cursor.
+The full `SKILL.md` content is embedded between markers:
+
+<!-- AIGC-Detector-Start -->
+[Full SKILL.md content here]
+<!-- AIGC-Detector-End -->
+
+## Notes
+- Cursor supports conditional rule activation via `globs` in frontmatter
+- `alwaysApply: false` means rules only activate when matching files are open
+- Dedicated file (file mode), overwrites on reinstall
+- Install command: `curl -sL ... | bash -s -- --agent cursor --dir /your/project`

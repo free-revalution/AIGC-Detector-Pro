@@ -22,6 +22,19 @@ Bilingual academic paper AI content (AIGC) detection and rewriting assistant. An
 
 ---
 
+## Agent 适配说明
+
+本 Skill 适配多种 AI Agent。以下是各 Agent 的工具映射：
+
+| 功能 | Claude Code | 其他 Agent (Codex / Cursor / Windsurf / Gemini / Copilot) |
+|------|------------|----------------------------------------------------------|
+| 询问用户 | AskUserQuestion 工具 | 输出选项编号，等待用户输入数字选择 |
+| 保存文件 | Write 工具 | 使用 Bash 写入文件 |
+| 读取文档 | Bash + python3 | 相同 |
+| 路径解析 | .claude/skills/ → ~/.claude/skills/（fallback） | ~/.claude/skills/（全局安装路径） |
+
+---
+
 ## 工作流程
 
 严格按照以下步骤执行，不要跳过任何步骤。
@@ -256,6 +269,8 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 
 报告输出后，使用 AskUserQuestion 工具一次性询问用户后续操作。根据语言使用对应选项文案：
 
+> **注意：** 若当前 Agent 不支持 AskUserQuestion 工具，直接在终端输出选项编号（1/2/3），等待用户输入数字选择。
+
 **中文选项：**
 1. "保存报告为 Markdown 文件" — 将检测报告保存为 .md 文件
 2. "对高风险段落进行改写并输出 .docx" — 执行 Step 5 的完整改写流程
@@ -268,6 +283,8 @@ python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 
 根据用户选择执行对应操作：
 - 选择 1：使用 Write 工具保存，默认路径为输入文件同目录下的 `aigc_report.md`
+
+> **注意：** 若当前 Agent 不支持 Write 工具，使用 Bash 命令写入文件。
 - 选择 2：继续 Step 5
 - 选择 3：对每个高风险/中风险段落输出改写建议（技法 + 示例 + 思路），然后结束
 - 用户可多选（同时选 1 和 2，或 1 和 3）
