@@ -44,7 +44,7 @@ curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/
 ```
 
 安装脚本会自动完成：
-1. 下载 Skill 文件到 `~/.claude/skills/aigc-detector/`
+1. 下载 Skill 文件到 `~/.aigc-killer/aigc-detector/`
 2. 检查并安装 `python-docx` 依赖
 
 卸载：
@@ -67,7 +67,7 @@ AIGC-Detector 适配多种 AI Agent，一条命令即可安装：
 | GitHub Copilot | `curl -sL ... \| bash -s -- --agent copilot --dir /your/project` |
 | 全部安装 | `curl -sL ... \| bash -s -- --agent all` |
 
-> 核心内容统一安装在 `~/.claude/skills/aigc-detector/`，各 Agent 通过入口指针文件引用。升级时重新运行安装命令即可。
+> 核心内容统一安装在 `~/.aigc-killer/aigc-detector/`（Agent 无关的通用路径），各 Agent 通过入口指针文件引用。升级时重新运行安装命令即可。
 
 卸载：
 

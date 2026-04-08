@@ -66,13 +66,13 @@ Bilingual academic paper AI content (AIGC) detection and rewriting assistant. An
 
 **如果用户提供了 .docx 文件路径：**
 
-先用项目级路径尝试，失败则用全局路径：
+先用全局安装路径尝试：
+```bash
+python3 ~/.aigc-killer/aigc-detector/scripts/docx_io.py read "<文件路径>"
+```
+如果上述命令失败（文件不存在），再尝试项目级路径：
 ```bash
 python3 .claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
-```
-如果上述命令失败（文件不存在），再尝试全局路径：
-```bash
-python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 ```
 
 将输出的文本用于后续分析。

@@ -6,7 +6,7 @@
 set -e
 
 SKILL_NAME="aigc-detector"
-INSTALL_DIR="$HOME/.claude/skills/$SKILL_NAME"
+INSTALL_DIR="$HOME/.aigc-killer/$SKILL_NAME"
 REPO_URL="https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/.claude/skills/$SKILL_NAME"
 
 # Defaults

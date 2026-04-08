@@ -46,7 +46,7 @@ curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/
 ```
 
 The installer automatically:
-1. Downloads Skill files to `~/.claude/skills/aigc-detector/`
+1. Downloads Skill files to `~/.aigc-killer/aigc-detector/`
 2. Checks and installs the `python-docx` dependency
 
 ## Multi-Agent Support
@@ -63,7 +63,7 @@ AIGC-Detector is compatible with multiple AI agents:
 | GitHub Copilot | `curl -sL ... \| bash -s -- --agent copilot --dir /your/project` |
 | All Agents | `curl -sL ... \| bash -s -- --agent all` |
 
-> Core content is installed at `~/.claude/skills/aigc-detector/`. Each agent uses entry pointer files for reference. Re-run the install command to upgrade.
+> Core content is installed at `~/.aigc-killer/aigc-detector/` (agent-agnostic path). Each agent uses entry pointer files for reference. Re-run the install command to upgrade.
 
 Uninstall:
 
