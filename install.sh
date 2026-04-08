@@ -18,28 +18,28 @@ while [[ $# -gt 0 ]]; do
     case $1 in
         --agent) AGENT="$2"; shift 2 ;;
         --dir) DIR="$2"; shift 2 ;;
-        *) echo "Unknown option: $1"; exit 1 ;;
+        *) echo "Unknown option: $1. Usage: install.sh [--agent <agent>] [--dir <dir>]"; exit 1 ;;
     esac
 done
 
 MARKER_START="<!-- AIGC-Detector-Start -->"
 MARKER_END="<!-- AIGC-Detector-End -->"
 
-echo "==> 正在安装 AIGC-Detector Skill..."
+echo "==> Installing AIGC-Detector Skill..."
 
 # --- Step 1: Download core content (always) ---
 mkdir -p "$INSTALL_DIR/scripts" "$INSTALL_DIR/references"
 
-echo "==> 下载核心内容..."
+echo "==> Downloading core content..."
 curl -fsSL "$REPO_URL/SKILL.md" -o "$INSTALL_DIR/SKILL.md"
 curl -fsSL "$REPO_URL/scripts/docx_io.py" -o "$INSTALL_DIR/scripts/docx_io.py"
 curl -fsSL "$REPO_URL/references/detection_principles.md" -o "$INSTALL_DIR/references/detection_principles.md"
 curl -fsSL "$REPO_URL/references/rewrite_methods.md" -o "$INSTALL_DIR/references/rewrite_methods.md"
 
 # --- Step 2: Check python-docx ---
-echo "==> 检查 python-docx 依赖..."
+echo "==> Checking python-docx dependency..."
 if ! python3 -c "import docx" 2>/dev/null; then
-    echo "==> 正在安装 python-docx..."
+    echo "==> Installing python-docx..."
     pip3 install python-docx -q
 fi
 
@@ -89,12 +89,12 @@ file_entry() {
 }
 
 install_codex() {
-    echo "==> 配置 Codex CLI..."
+    echo "==> Setting up Codex CLI..."
     append_entry "$HOME/.codex/AGENTS.md" "$SKILL_CONTENT"
 }
 
 install_cursor() {
-    echo "==> 配置 Cursor..."
+    echo "==> Setting up Cursor..."
     local mdc_content
     mdc_content="---
 description: AIGC detection and rewriting assistant for academic papers. Analyzes text for AI-generated characteristics, provides detailed rewrite suggestions. Supports .docx files, outputs reports and rewritten documents. Bilingual: Chinese & English.
@@ -109,7 +109,7 @@ $MARKER_END"
 }
 
 install_windsurf() {
-    echo "==> 配置 Windsurf..."
+    echo "==> Setting up Windsurf..."
     local content="# AIGC-Detector Skill
 # When user asks to analyze/rewrite academic papers, follow these instructions:
 
@@ -118,7 +118,7 @@ $SKILL_CONTENT"
 }
 
 install_gemini() {
-    echo "==> 配置 Gemini CLI..."
+    echo "==> Setting up Gemini CLI..."
     local content="# AIGC-Detector Skill
 
 $SKILL_CONTENT"
@@ -126,7 +126,7 @@ $SKILL_CONTENT"
 }
 
 install_copilot() {
-    echo "==> 配置 GitHub Copilot..."
+    echo "==> Setting up GitHub Copilot..."
     local content="# AIGC-Detector Skill
 
 $SKILL_CONTENT"
@@ -136,7 +136,7 @@ $SKILL_CONTENT"
 # Dispatch
 case "$AGENT" in
     claude)
-        echo "==> Claude Code: Skill 已安装到 $INSTALL_DIR（自动识别）"
+        echo "==> Claude Code: Skill installed to $INSTALL_DIR (auto-detected)"
         ;;
     codex)   install_codex ;;
     cursor)  install_cursor ;;
@@ -144,7 +144,7 @@ case "$AGENT" in
     gemini)  install_gemini ;;
     copilot) install_copilot ;;
     all)
-        echo "==> Claude Code: Skill 已安装到 $INSTALL_DIR（自动识别）"
+        echo "==> Claude Code: Skill installed to $INSTALL_DIR (auto-detected)"
         install_codex
         install_cursor
         install_windsurf
@@ -152,13 +152,13 @@ case "$AGENT" in
         install_copilot
         ;;
     *)
-        echo "错误: 未知的 Agent '$AGENT'"
-        echo "支持的 Agent: claude, codex, cursor, windsurf, gemini, copilot, all"
+        echo "Error: Unknown agent '$AGENT'"
+        echo "Supported agents: claude, codex, cursor, windsurf, gemini, copilot, all"
         exit 1
         ;;
 esac
 
 echo ""
-echo "==> 安装完成!"
-echo "    核心内容: $INSTALL_DIR"
+echo "==> Installation complete!"
+echo "    Core content: $INSTALL_DIR"
 echo "    Agent: $AGENT"

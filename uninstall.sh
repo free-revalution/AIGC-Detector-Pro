@@ -17,14 +17,14 @@ done
 MARKER_START="<!-- AIGC-Detector-Start -->"
 MARKER_END="<!-- AIGC-Detector-End -->"
 
-echo "==> 正在卸载 AIGC-Detector Skill..."
+echo "==> Uninstalling AIGC-Detector Skill..."
 
 # Remove core content
 if [ -d "$SKILL_DIR" ]; then
     rm -rf "$SKILL_DIR"
-    echo "    已删除 $SKILL_DIR"
+    echo "    Removed $SKILL_DIR"
 else
-    echo "    核心内容不存在 $SKILL_DIR（已删除或未安装）"
+    echo "    Core content not found at $SKILL_DIR (already removed or not installed)"
 fi
 
 # Remove marker-wrapped content from agent files
@@ -42,9 +42,9 @@ remove_markers() {
         # Remove file if empty or only whitespace
         if [ ! -s "$filepath" ] || [ "$(tr -d '[:space:]' < "$filepath")" = "" ]; then
             rm -f "$filepath"
-            echo "    已删除 $filepath（空文件）"
+            echo "    Removed $filepath (empty file)"
         else
-            echo "    已清理 $filepath 中的 AIGC-Detector 内容"
+            echo "    Cleaned AIGC-Detector content from $filepath"
         fi
     fi
 }
@@ -56,9 +56,9 @@ remove_markers "$DIR/GEMINI.md"
 remove_markers "$DIR/.github/copilot-instructions.md"
 
 # Remove empty parent directories
-rmdir "$HOME/.codex" 2>/dev/null && echo "    已删除 $HOME/.codex/" || true
-rmdir "$DIR/.cursor/rules" 2>/dev/null && echo "    已删除 $DIR/.cursor/rules/" || true
-rmdir "$DIR/.cursor" 2>/dev/null && echo "    已删除 $DIR/.cursor/" || true
-rmdir "$DIR/.github" 2>/dev/null && echo "    已删除 $DIR/.github/" || true
+rmdir "$HOME/.codex" 2>/dev/null && echo "    Removed $HOME/.codex/" || true
+rmdir "$DIR/.cursor/rules" 2>/dev/null && echo "    Removed $DIR/.cursor/rules/" || true
+rmdir "$DIR/.cursor" 2>/dev/null && echo "    Removed $DIR/.cursor/" || true
+rmdir "$DIR/.github" 2>/dev/null && echo "    Removed $DIR/.github/" || true
 
-echo "==> 卸载完成!"
+echo "==> Uninstall complete!"
