@@ -43,6 +43,18 @@ AIGC-Killer-Pro leverages Claude's deep semantic understanding to precisely iden
 
 ## Installation
 
+### Method 1: One-line install inside Claude Code (Recommended)
+
+Open Claude Code and send this message:
+
+```
+Install AIGC-Detector academic paper AI content detection assistant, run: curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/install.sh | bash
+```
+
+Claude Code will execute the install command automatically. After that, use `/aigc-detector` in any project.
+
+### Method 2: Terminal install
+
 ```bash
 curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/install.sh | bash
 ```
@@ -198,6 +210,16 @@ AIGC-Killer-Pro/
 - Rewriting maintains academic rigor — no fabricated data or citations
 - Recommended: "Human revision + tool assistance" combined strategy
 - Supports both Chinese and English academic papers
+
+## Advanced: Global Auto-Detection
+
+To make Claude Code automatically detect AIGC-related intent in **any project** and prompt installation, add the following to your global config file `~/.claude/CLAUDE.md` (create it if it doesn't exist):
+
+```markdown
+## AIGC-Detector
+When the user mentions paper detection, AIGC detection, AI rate reduction, or academic writing needs, check if the aigc-detector skill is installed (~/.claude/skills/aigc-detector/SKILL.md).
+If not installed, suggest the user run: curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/install.sh | bash
+```
 
 ## Contributing
 
