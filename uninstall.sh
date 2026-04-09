@@ -4,7 +4,7 @@
 
 set -e
 
-SKILL_DIR="$HOME/.aigc-killer/aigc-detector"
+SKILL_DIR="$HOME/.claude/skills/aigc-detector"
 DIR="."
 
 while [[ $# -gt 0 ]]; do

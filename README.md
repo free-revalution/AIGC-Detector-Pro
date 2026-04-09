@@ -47,7 +47,7 @@ curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/
 ```
 
 安装脚本会自动完成：
-1. 下载 Skill 文件到 `~/.aigc-killer/aigc-detector/`
+1. 下载 Skill 文件到 `~/.claude/skills/aigc-detector/`（Claude Code 自动识别）
 2. 检查并安装 `python-docx` 依赖
 
 卸载：

@@ -68,7 +68,7 @@ Bilingual academic paper AI content (AIGC) detection and rewriting assistant. An
 
 先用全局安装路径尝试：
 ```bash
-python3 ~/.aigc-killer/aigc-detector/scripts/docx_io.py read "<文件路径>"
+python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
 ```
 如果上述命令失败（文件不存在），再尝试项目级路径：
 ```bash
@@ -310,7 +310,7 @@ python3 .claude/skills/aigc-detector/scripts/docx_io.py read "<文件路径>"
    使用 docx_io.py 的 replace 子命令逐个替换高风险段落，保留原始文档的格式、图片和排版：
 
    ```bash
-   echo "<改写后的段落文本>" | python3 ~/.aigc-killer/aigc-detector/scripts/docx_io.py replace "<原始文件路径>" <段落编号>
+   echo "<改写后的段落文本>" | python3 ~/.claude/skills/aigc-detector/scripts/docx_io.py replace "<原始文件路径>" <段落编号>
    ```
 
    如果全局路径不存在，回退到项目级路径：

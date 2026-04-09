@@ -48,7 +48,7 @@ curl -sL https://raw.githubusercontent.com/free-revalution/AIGC-Killer-Pro/main/
 ```
 
 The installer automatically:
-1. Downloads Skill files to `~/.aigc-killer/aigc-detector/`
+1. Downloads Skill files to `~/.claude/skills/aigc-detector/` (Claude Code auto-detects)
 2. Checks and installs the `python-docx` dependency
 
 ## Multi-Agent Support
