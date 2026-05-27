@@ -1,6 +1,6 @@
 ---
 name: aigc-detector
-description: Academic paper AI content detection, rewriting, and thesis writing assistant. Analyzes text for AI-generated characteristics, provides detailed rewrite suggestions, and generates full thesis drafts. Supports .docx files, outputs reports and rewritten/formatted documents. Bilingual: Chinese & English.
+description: "Academic paper AI content detection, rewriting, and thesis writing assistant. Analyzes text for AI-generated characteristics, provides detailed rewrite suggestions, and generates full thesis drafts. Supports .docx files, outputs reports and rewritten/formatted documents. Bilingual: Chinese & English."
 ---
 
 # AIGC Detection, Rewriting & Thesis Writing Assistant
